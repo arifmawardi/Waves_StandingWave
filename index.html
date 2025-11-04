@@ -88,7 +88,7 @@
             const propSpeed = 2; // (pixels/frame) - Reduced speed
             
             // Wave parameters controlled by user
-            const amplitude = 80; // Fixed amplitude
+            let amplitude = 80; // Fixed amplitude changed to let, will be updated dynamically
             const frequency = 0.05; // Fixed frequency (omega)
             let phase = 0; // Phase difference in radians, hardcoded to 0
             
@@ -142,6 +142,13 @@
                 // Set canvas size to its CSS-defined size
                 canvas.width = canvas.clientWidth;
                 canvas.height = canvas.clientHeight;
+                
+                // --- MODIFIED CODE: Dynamically calculate amplitude ---
+                // Set component amplitude to 20% of canvas height.
+                // The standing wave's max amplitude is 2*A (40% of height).
+                // This ensures the wave (from yCenter +/- 2*A) fits.
+                amplitude = canvas.height * 0.2; 
+                // --- END MODIFIED CODE ---
             }
 
             // Function to draw the waves
@@ -365,4 +372,6 @@
     </script>
 </body>
 </html>
+
+
 
